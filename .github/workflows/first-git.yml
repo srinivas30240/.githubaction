@@ -2,10 +2,10 @@ name: my first gitactionion workflow
 on:
   push:
     branches: ["main"]  
-    pull_request:
-      branches: ["main"]  
-    push_request:
-      branches: ["main"]
+    # pull:
+    #   branches: ["main"]  
+    # push_request:
+    #   branches: ["main"]
 jobs:
   my-first-gitactionion-workflow:
     runs-on: ubuntu-latest
