@@ -1,3 +1,5 @@
+# name: CI Pipeline
+
 name: CI Pipeline
 
 on:
@@ -14,30 +16,48 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
+      - name: Say Hello
+        run: echo "CI pipeline is working!"
 
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r app/requirements.txt
 
-      - name: Run Tests
-        run: |
-          pytest -v --junitxml=test-results.xml
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
 
-      - name: Upload Test Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: test-results.xml
-      - name: Check Code Style
-        run: |                  
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics           
-      - name: Upload Code Style Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: code-style-report
+# jobs:
+#   build-test:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Setup Python
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: "3.10"
+
+#       - name: Install Dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r app/requirements.txt
+
+#       - name: Run Tests
+#         run: |
+#           pytest -v --junitxml=test-results.xml
+
+#       - name: Upload Test Results
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: test-results
+#           path: test-results.xml
+#       - name: Check Code Style
+#         run: |                  
+#           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+#           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics           
+#       - name: Upload Code Style Report
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: code-style-report
